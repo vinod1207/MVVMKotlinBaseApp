@@ -1,6 +1,5 @@
 package com.example.myapplication.networking
 
-import com.example.myapplication.R
 import com.example.myapplication.networking.RetrofitException.Companion.asRetrofitException
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import io.reactivex.Completable

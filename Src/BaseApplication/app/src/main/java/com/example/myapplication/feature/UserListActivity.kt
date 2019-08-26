@@ -17,7 +17,6 @@ import com.example.myapplication.permission.AbstractPermissionActivity
 import com.example.myapplication.permission.PermissionUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
-import kotlin.collections.ArrayList
 
 
 class UserListActivity : AbstractPermissionActivity(), AbstractPermissionActivity.PermissionResult {
@@ -80,6 +79,8 @@ class UserListActivity : AbstractPermissionActivity(), AbstractPermissionActivit
             Resource.Status.ERROR -> {
                 showShortToast("Error")
             }
+            Resource.Status.VALIDATION -> TODO()
+            null -> TODO()
         }
     }
 

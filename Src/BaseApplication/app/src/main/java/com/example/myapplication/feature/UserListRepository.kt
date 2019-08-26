@@ -18,7 +18,6 @@ class UserListRepository @Inject constructor(apiService: ApiService, application
     private var mApiService: ApiService = apiService
     private var mApplication: Application = application
     private var mMutableLiveData = MutableLiveData<Resource<ArrayList<UserListModel>>>()
-    private var list : ArrayList<UserListModel> = ArrayList()
 
 
     /**
