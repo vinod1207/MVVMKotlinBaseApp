@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">My Application</string>
+
+    <string name="upload_image">Upload Image</string>
+
+    <string-array name="upload_photo">
+        <item>Take Photo</item>
+        <item>Choose from Gallery</item>
+        <item>Cancel</item>
+    </string-array>
 </resources>

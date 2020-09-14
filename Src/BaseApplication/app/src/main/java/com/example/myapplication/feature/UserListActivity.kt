@@ -96,6 +96,7 @@ class UserListActivity : AbstractPermissionActivity(), AbstractPermissionActivit
 
     override fun onPermissionResult(permissionResult: PermissionModel) {
         if (permissionResult.isPermissionGranted) {
+            showPicDialog()
             Toast.makeText(this, "Permission granted", Toast.LENGTH_SHORT).show()
 
         } else if (permissionResult.isPermissionDenied) {
