@@ -24,8 +24,6 @@ class MainViewModel @Inject constructor(application: Application, repository: Us
 
     private fun observeData() {
         mLiveEventData.addSource(mRepository.getUserListLiveData()) { listResource ->
-
-
             when (listResource.mStatus) {
                 Resource.Status.LOADING -> mLiveEventData.value = Resource.loading()
 

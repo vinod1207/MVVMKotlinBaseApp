@@ -8,7 +8,6 @@ import android.provider.Settings
 import android.text.TextUtils
 import android.view.View
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.myapplication.baseUi.BaseActivity
@@ -30,7 +29,7 @@ abstract class AbstractPermissionActivity : BaseActivity() {
     }
 
     fun requestEach(permissions: ArrayList<String>?, permissionResult: PermissionResult) {
-        if (permissions == null || permissions.size == 0)
+        if (!(permissions != null && permissions.size != 0))
             return
 
         mPermissionsList!!.clear()
@@ -44,7 +43,7 @@ abstract class AbstractPermissionActivity : BaseActivity() {
             if (ContextCompat.checkSelfPermission(this, permissions[i]) != PackageManager.PERMISSION_GRANTED)
                 disGrantedPermissionsLists.add(permissions[i])
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, permissions[i]))
-                rationalePermissionsList.add(permissions[i])
+                rationalePermissionsList += permissions[i]
         }
 
         if (disGrantedPermissionsLists.size > 0) {
@@ -97,24 +96,21 @@ abstract class AbstractPermissionActivity : BaseActivity() {
     }
 
     private fun showPermissionRationale(deniedPermissions: ArrayList<String>?) {
-        if (deniedPermissions != null && deniedPermissions.size > 0) {
-
-            showRationaleMessage(getDenialPermissionsMessage(deniedPermissions),
-                DialogInterface.OnClickListener { dialog, which ->
-                    ActivityCompat.requestPermissions(
-                        this@AbstractPermissionActivity,
-                        deniedPermissions.toTypedArray(),
-                        PermissionUtils.REQUEST_CODE_PERMISSIONS
-                    )
-                },
-                DialogInterface.OnClickListener { dialog, which ->
-                    sendPermissionResult(
-                        mPermissionsList,
-                        false,
-                        false
-                    )
-                })
-        }
+        if (!(deniedPermissions == null || deniedPermissions.size <= 0)) showRationaleMessage(getDenialPermissionsMessage(deniedPermissions),
+            DialogInterface.OnClickListener { dialog, which ->
+                ActivityCompat.requestPermissions(
+                    this@AbstractPermissionActivity,
+                    deniedPermissions.toTypedArray(),
+                    PermissionUtils.REQUEST_CODE_PERMISSIONS
+                )
+            },
+            DialogInterface.OnClickListener { dialog, which ->
+                sendPermissionResult(
+                    mPermissionsList,
+                    false,
+                    false
+                )
+            })
     }
 
     private fun showOpenSettingsSnackBar(neverAskAgainPermissions: ArrayList<String>) {

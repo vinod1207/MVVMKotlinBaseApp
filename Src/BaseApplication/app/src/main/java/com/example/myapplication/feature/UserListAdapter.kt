@@ -28,7 +28,7 @@ class UserListAdapter(private val userList: ArrayList<UserListModel>) : Recycler
         return userList.size
     }
 
-    //the class is hodling the list view
+    //the class is holding the list view
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun bindItems(user: UserListModel) {
